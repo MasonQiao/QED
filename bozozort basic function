@@ -12,13 +12,8 @@ def swap(list, pos1, pos2):
     list[pos1], list[pos2] = list[pos2], list[pos1]
     return list
 
-def sort(list):
-    return(list.sort())
-
 def bozo(list, sorted):
     length_of_list = len(list)
-
-
 
     count=0
 
@@ -26,7 +21,7 @@ def bozo(list, sorted):
         a = np.random.randint((length_of_list))
         b = np.random.randint((length_of_list))
         while b == a:
-            b = np.random.randint((length_of_list - 1))
+            b = np.random.randint((length_of_list))
         swap(list, a, b)
         count += 1
         print(list)
