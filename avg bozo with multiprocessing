@@ -1,0 +1,79 @@
+import multiprocessing as mp
+import random as r
+import numpy as np
+
+def check(l, l1):
+    if l == l1:
+        return True
+    else:
+        return False
+
+
+def swap(list, pos1, pos2):
+    list[pos1], list[pos2] = list[pos2], list[pos1]
+    return list
+
+
+def bozo(list, sorted):
+    length_of_list = len(list)
+
+    count=0
+
+    while check(list, sorted) == False:
+        a = np.random.randint((length_of_list))
+        b = np.random.randint((length_of_list))
+        while b == a:
+            b = np.random.randint((length_of_list))
+        swap(list, a, b)
+        count += 1
+
+
+
+    return (count)
+
+
+def bozoavg():
+    lenlist = 7
+    avg = 0
+    samplenum = 12500
+    for _ in range(samplenum):
+        shuffled = list(range(1, (lenlist + 1)))
+        r.shuffle(shuffled)
+        sorted = list(range(1, (lenlist + 1)))
+        avg += bozo(shuffled, sorted)
+    realavg = avg / samplenum
+    print(realavg)
+
+
+
+
+if __name__ == '__main__':
+
+    p1 = mp.Process(target=bozoavg)
+    p2 = mp.Process(target=bozoavg)
+    p3 = mp.Process(target=bozoavg)
+    p4 = mp.Process(target=bozoavg)
+    p5 = mp.Process(target=bozoavg)
+    p6 = mp.Process(target=bozoavg)
+    p7 = mp.Process(target=bozoavg)
+    p8 = mp.Process(target=bozoavg)
+
+    p1.start()
+    p2.start()
+    p3.start()
+    p4.start()
+    p5.start()
+    p6.start()
+    p7.start()
+    p8.start()
+
+
+    p1.join()
+    p2.join()
+    p3.join()
+    p4.join()
+    p5.join()
+    p6.join()
+    p7.join()
+    p8.join()
+
