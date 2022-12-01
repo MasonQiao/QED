@@ -1,0 +1,44 @@
+import numpy as np
+import random as r
+import multiprocessing as mp
+
+def bogo(lenlist):
+  shuffled = list(range(1, lenlist+1))
+  r.shuffle(shuffled)
+  sorted = list(range(1, lenlist+1))
+  count = 0
+  while np.array_equal(shuffled, sorted) == False:
+    count+=1
+    r.shuffle(shuffled)
+  return count
+
+
+def bogoavg():
+    lenlist = 4
+    avg = 0
+    samplenum = 125000
+    for _ in range(samplenum):
+        avg += bogo(lenlist)
+    realavg = avg / samplenum
+    print(realavg)
+
+
+if __name__ == '__main__':
+
+    p1 = mp.Process(target=bogoavg)
+    p2 = mp.Process(target=bogoavg)
+    p3 = mp.Process(target=bogoavg)
+    p4 = mp.Process(target=bogoavg)
+    p5 = mp.Process(target=bogoavg)
+    p6 = mp.Process(target=bogoavg)
+    p7 = mp.Process(target=bogoavg)
+    p8 = mp.Process(target=bogoavg)
+
+    p1.start()
+    p2.start()
+    p3.start()
+    p4.start()
+    p5.start()
+    p6.start()
+    p7.start()
+    p8.start()
