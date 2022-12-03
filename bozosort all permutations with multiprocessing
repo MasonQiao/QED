@@ -1,0 +1,40 @@
+from multiprocessing import Pool
+import numpy as np
+import itertools
+
+def swap(l, pos1, pos2):
+    l[pos1], l[pos2] = l[pos2], l[pos1]
+    return l
+
+
+def bozo(l, sorted):
+    length_of_list = len(l)
+    count=0
+    while np.array_equal(l, sorted) == False:
+        a = np.random.randint((length_of_list))
+        b = np.random.randint((length_of_list))
+        while b == a:
+            b = np.random.randint((length_of_list))
+        swap(l, a, b)
+        count += 1
+    return (count)
+
+def f(x):
+    x= list(x)
+    x0 = x.copy()
+    sorted = np.sort(x)
+    sorted = list(sorted)
+    samplesize = 1000000
+    avg = 0
+    for _ in range(samplesize):
+        x = x0.copy()
+        avg += bozo(x, sorted)
+    return (avg/samplesize)
+
+
+if __name__ == '__main__':
+    with Pool(12) as p:
+        perms = list(itertools.perms([1, 2, 3]))
+        perms.pop(0)
+        mylist = (p.map(f, perms))
+        print(np.average(mylist))
