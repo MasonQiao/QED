@@ -7,11 +7,6 @@ x3 = [5.003602,22.98739,119.008108,717.586779,5076.570410795793]
 
 y = [3,4,5,6,7]
 
-x1 = np.array(x1)
-x2 = np.array(x2)
-x3 = np.array(x3)
-y = np.array(y)
-
 plt.yscale("log")
 plt.plot(y, x1, c='r', label='bozosort', marker = '.', linewidth = 0.5, markersize = 0.5)
 plt.plot(y, x2, c='b', label='bozosort average across perms', marker = '.', linewidth = 0.5, markersize = 0.5)
