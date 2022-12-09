@@ -1,0 +1,17 @@
+import matplotlib.pyplot as plt
+bozo = [0.753395, 1.03296875,1.096484,1.07858298611, 1.05658593254] 
+
+bozoavg = [0.90005226666,  1.07599001812, 1.10207288515, 1.08101635682, 1.05115413269]
+
+bogo = [0.83393366666, 0.95780791666, 0.99173423333, 0.99664830416, 1.00725603389]
+
+yequals1 = [1,1,1,1,1,1,1]
+
+xaxis = [3,4,5,6,7]
+
+plt.plot(xaxis, bozo, linewidth = 0.5)
+plt.plot(xaxis, bozoavg, linewidth = 0.5)
+plt.plot(xaxis, bogo, linewidth = 0.5)
+plt.plot(xaxis, yequals1, linewidth = 0.5)
+
+plt.show()
