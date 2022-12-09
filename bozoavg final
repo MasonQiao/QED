@@ -1,0 +1,104 @@
+from multiprocessing import Pool
+import numpy as np
+import itertools
+def swap(l, pos1, pos2):
+    l[pos1], l[pos2] = l[pos2], l[pos1]
+    return l
+
+def swap3(l, pos1, pos2, pos3):
+    shuffling = []
+    shuffling.append(l[pos1])
+    shuffling.append(l[pos2])
+    shuffling.append(l[pos3])
+    np.random.shuffle(shuffling)
+    l[pos1] = shuffling[0]
+    l[pos2] = shuffling[1]
+    l[pos3] = shuffling[2]
+    return l
+
+def swap4(l, pos1, pos2, pos3, pos4):
+    shuffling = []
+    shuffling.append(l[pos1])
+    shuffling.append(l[pos2])
+    shuffling.append(l[pos3])
+    shuffling.append(l[pos4])
+    l[pos1] = shuffling[0]
+    l[pos2] = shuffling[1]
+    l[pos3] = shuffling[2]
+    l[pos4] = shuffling[3]
+    return l
+
+
+def bozo(l, sorted):
+    length_of_list = len(l)
+    count=0
+    while np.array_equal(l, sorted) == False:
+        a = np.random.randint((length_of_list))
+        b = np.random.randint((length_of_list))
+        while b == a:
+            b = np.random.randint((length_of_list))
+        c = np.random.randint((length_of_list))
+        l = swap(l,a,b)
+
+        count += 1
+
+    return (count)
+
+def bozo3(l, sorted):
+    length_of_list = len(l)
+    count=0
+    while np.array_equal(l, sorted) == False:
+        a = np.random.randint((length_of_list))
+        b = np.random.randint((length_of_list))
+        while b == a:
+            b = np.random.randint((length_of_list))
+        c = np.random.randint((length_of_list))
+        while c == a or c == b:
+            c = np.random.randint((length_of_list))
+        l = swap3(l, a, b, c)
+        print(l, "ig its doing osmerhting nmadbdjhsgfjhs")
+        count += 1
+
+    return (count)
+
+
+def bozo4(l, sorted):
+    length_of_list = len(l)
+    count=0
+    while np.array_equal(l, sorted) == False:
+        indexes = range(length_of_list)
+        indexes = list(indexes)
+        aa = np.random.randint((length_of_list))
+        a = indexes[aa]
+        indexes.pop(aa)
+        bb = np.random.randint((length_of_list-1))
+        b = indexes[bb]
+        indexes.pop(bb)
+        cc = np.random.randint((length_of_list-2))
+        c = indexes[cc]
+        indexes.pop(cc)
+        dd = np.random.randint((length_of_list-3))
+        d = indexes[dd]
+
+        l = swap4(l, a, b, c, d)
+        print(l)
+        count += 1
+
+def f(x):
+    x= list(x)
+    x0 = x.copy()
+    sorted = np.sort(x)
+    sorted = list(sorted)
+    samplesize = 100000
+    avg = 0
+    for _ in range(samplesize):
+        x = x0.copy()
+        avg += bozo(x, sorted)
+    return (avg/samplesize)
+
+if __name__ == '__main__':
+    with Pool(6) as p:
+        perms = list(itertools.permutations([1, 2, 3, 4]))
+        perms.pop(0)
+        mylist = (p.map(f, perms))
+        print(np.average(mylist))
