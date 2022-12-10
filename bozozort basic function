@@ -30,10 +30,3 @@ def bozo(list, sorted):
 
     return (count)
 
-
-urdad = range(1)
-for urmom in urdad:
-    uruncle = [1,2,3,4,5]
-    r.shuffle(uruncle)
-    sorted = [1,2,3,4,5]
-    print(bozo(uruncle, sorted))
