@@ -1,0 +1,15 @@
+import matplotlib.pyplot as plt
+
+yaxis = [132.2487462184874, 149.4703168067227, 119.008108]
+
+five_factorial = [120, 120, 120]
+
+
+xaxis = [2,3,5]
+
+
+plt.plot(xaxis, five_factorial, c = 'y', label='5 factorial', marker = '.', linewidth = 0.5, markersize = 0.5)
+plt.plot(xaxis, yaxis, c='r', label = 'x', marker = '.', linewidth = 0.5, markersize = 0.5)
+plt.legend()
+plt.title('N=5')
+plt.show()
